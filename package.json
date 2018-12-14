@@ -1,0 +1,21 @@
+{
+  "name": "TourCompany",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prestart": "webpack",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "fs": "0.0.1-security",
+    "pg": "^6.1.0",
+    "webpack": "3.5.0",
+    "webpack-node-externals": "^1.7.2"
+  }
+}
