@@ -70,6 +70,8 @@
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = makeQuery;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__debug_js__ = __webpack_require__(6);
+
 
 
 
@@ -96,6 +98,12 @@ function createNewClient() {
 function makeQuery(query, arr, callbackGood, callbackBad) {
     const client = createNewClient();
     client.connect();
+
+    if(Object(__WEBPACK_IMPORTED_MODULE_1__debug_js__["a" /* default */])() === true) {
+        console.log("   ");
+        console.log(query);
+        console.log("----------------------------------------");
+    }
 
     client.query(query, arr, (err, res) => {
         client.end();
@@ -160,7 +168,7 @@ function global() {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global_js__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__route_js__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__generate_js__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__generate_js__ = __webpack_require__(14);
 "use script";
 
 
@@ -170,13 +178,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 const PORT = 5007;
 
 function start() {
-    let express = __webpack_require__(14);
+    let express = __webpack_require__(15);
     let app = express();
 
-    let pg = __webpack_require__(15);
+    let pg = __webpack_require__(16);
     Object(__WEBPACK_IMPORTED_MODULE_0__global_js__["a" /* default */])().pg = pg;
 
-    let fs = __webpack_require__(16);
+    let fs = __webpack_require__(17);
     Object(__WEBPACK_IMPORTED_MODULE_0__global_js__["a" /* default */])().fs = fs;
 
     app.use(function(req, res, next) {
@@ -221,13 +229,13 @@ setTimeout(printNewLines, 4000);
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = route;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__clear_js__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__addNewCountry_js__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__addNewCity_js__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__addNewAirport_js__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__getTableContent_js__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__addNewMan_js__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__addNewTicket_js__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__getManInfo_js__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__addNewCountry_js__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__addNewCity_js__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__addNewAirport_js__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__getTableContent_js__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__addNewMan_js__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__addNewTicket_js__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__getManInfo_js__ = __webpack_require__(13);
 
 
 
@@ -306,6 +314,21 @@ function clear(request, response) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = debug;
+
+
+const DEBUG = true;
+
+function debug() {
+    return DEBUG;
+}
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = addNewCountry;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__makeQuery_js__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bodyControl__ = __webpack_require__(1);
@@ -330,7 +353,7 @@ function addNewCountry(request, response) {
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -357,7 +380,7 @@ function addNewCity(request, response) {
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -384,7 +407,7 @@ function addNewAirport(request, response) {
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -410,7 +433,7 @@ function getTableContent(request, response) {
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -437,7 +460,7 @@ function addNewMan(request, response) {
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -472,7 +495,7 @@ function addNewTicket(request, response) {
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -495,7 +518,7 @@ function getManInfo(request, response) {
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -548,19 +571,19 @@ function generate(name, mass, url) {
 }
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports) {
 
 module.exports = require("express");
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports) {
 
 module.exports = require("pg");
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports) {
 
 module.exports = require("fs");

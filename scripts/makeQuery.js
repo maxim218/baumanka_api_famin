@@ -1,6 +1,7 @@
 "use strict";
 
 import global from "./global.js";
+import debug from "./debug.js";
 
 const params = {
     database: "base",
@@ -24,6 +25,12 @@ function createNewClient() {
 export default function makeQuery(query, arr, callbackGood, callbackBad) {
     const client = createNewClient();
     client.connect();
+
+    if(debug() === true) {
+        console.log("   ");
+        console.log(query);
+        console.log("----------------------------------------");
+    }
 
     client.query(query, arr, (err, res) => {
         client.end();

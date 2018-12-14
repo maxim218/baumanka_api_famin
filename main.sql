@@ -35,7 +35,3 @@ CREATE TABLE ticket (
     ticket_date TIMESTAMPTZ,
     ticket_man_id INTEGER REFERENCES man(man_id) ON DELETE CASCADE NOT NULL
 ); 
-
-
-
-
