@@ -69,7 +69,7 @@
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = makeQuery;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global_js__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global_js__ = __webpack_require__(2);
 
 
 
@@ -114,22 +114,6 @@ function makeQuery(query, arr, callbackGood, callbackBad) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = global;
-
-
-const GLOBAL = {};
-
-function global() {
-    return GLOBAL;
-}
-
-
-
-/***/ }),
-/* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = bodyControl;
 
 
@@ -153,14 +137,30 @@ function bodyControl(request, response, callback) {
 
 
 /***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = global;
+
+
+const GLOBAL = {};
+
+function global() {
+    return GLOBAL;
+}
+
+
+
+/***/ }),
 /* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global_js__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global_js__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__route_js__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__generate_js__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__generate_js__ = __webpack_require__(13);
 "use script";
 
 
@@ -170,13 +170,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 const PORT = 5007;
 
 function start() {
-    let express = __webpack_require__(12);
+    let express = __webpack_require__(14);
     let app = express();
 
-    let pg = __webpack_require__(13);
+    let pg = __webpack_require__(15);
     Object(__WEBPACK_IMPORTED_MODULE_0__global_js__["a" /* default */])().pg = pg;
 
-    let fs = __webpack_require__(14);
+    let fs = __webpack_require__(16);
     Object(__WEBPACK_IMPORTED_MODULE_0__global_js__["a" /* default */])().fs = fs;
 
     app.use(function(req, res, next) {
@@ -197,6 +197,7 @@ function start() {
     Object(__WEBPACK_IMPORTED_MODULE_2__generate_js__["a" /* default */])("addCity", ['city_name', 'city_country_id'], 'api/database/city/add');
     Object(__WEBPACK_IMPORTED_MODULE_2__generate_js__["a" /* default */])("addAirport", ['airport_name', 'airport_city_id'], 'api/database/airport/add');
     Object(__WEBPACK_IMPORTED_MODULE_2__generate_js__["a" /* default */])("addMan", ['man_fullname', 'man_city'], 'api/database/man/add');
+    Object(__WEBPACK_IMPORTED_MODULE_2__generate_js__["a" /* default */])("addTicket", ['ticket_airport_a', 'ticket_airport_b', 'ticket_man_id'], 'api/database/ticket/add');
 
     Object(__WEBPACK_IMPORTED_MODULE_1__route_js__["a" /* default */])(app);
 }
@@ -206,6 +207,8 @@ start();
 function printNewLines() {
     console.log("    ");
     console.log("-----------------------------------");
+    console.log("    ");
+    console.log("System is ready to work ...");
     console.log("    ");
 }
 
@@ -223,6 +226,10 @@ setTimeout(printNewLines, 4000);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__addNewAirport_js__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__getTableContent_js__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__addNewMan_js__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__addNewTicket_js__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__getManInfo_js__ = __webpack_require__(12);
+
+
 
 
 
@@ -256,6 +263,14 @@ function route(app) {
     app.post('/api/database/man/add', function(request, response) {
         Object(__WEBPACK_IMPORTED_MODULE_5__addNewMan_js__["a" /* default */])(request, response);
     });
+
+    app.post('/api/database/ticket/add', function(request, response) {
+        Object(__WEBPACK_IMPORTED_MODULE_6__addNewTicket_js__["a" /* default */])(request, response);
+    });
+
+    app.get('/api/database/man/:id/get', function(request, response) {
+        Object(__WEBPACK_IMPORTED_MODULE_7__getManInfo_js__["a" /* default */])(request, response);
+    });
 }
 
 
@@ -265,7 +280,7 @@ function route(app) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = clear;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global_js__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global_js__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__makeQuery_js__ = __webpack_require__(0);
 
 
@@ -293,7 +308,7 @@ function clear(request, response) {
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = addNewCountry;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__makeQuery_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bodyControl__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bodyControl__ = __webpack_require__(1);
 
 
 
@@ -321,7 +336,7 @@ function addNewCountry(request, response) {
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = addNewCity;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__makeQuery_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bodyControl__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bodyControl__ = __webpack_require__(1);
 
 
 
@@ -348,7 +363,7 @@ function addNewCity(request, response) {
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = addNewAirport;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__makeQuery_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bodyControl__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bodyControl__ = __webpack_require__(1);
 
 
 
@@ -387,7 +402,9 @@ function getTableContent(request, response) {
     Object(__WEBPACK_IMPORTED_MODULE_0__makeQuery_js__["a" /* default */])(query, [], (arr) => {
         response.end(JSON.stringify(arr));
     }, () => {
-        throw new Error();
+        response.end(JSON.stringify({
+            result: "TABLE_NOT_FOUND",
+        }));
     });
 }
 
@@ -399,7 +416,7 @@ function getTableContent(request, response) {
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = addNewMan;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__makeQuery_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bodyControl__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bodyControl__ = __webpack_require__(1);
 
 
 
@@ -424,8 +441,66 @@ function addNewMan(request, response) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = addNewTicket;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__makeQuery_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bodyControl_js__ = __webpack_require__(1);
+
+
+
+
+
+function addNewTicket(request, response) {
+    Object(__WEBPACK_IMPORTED_MODULE_1__bodyControl_js__["a" /* default */])(request, response, (body) => {
+        const airA = parseInt(body.ticket_airport_a);
+        const airB = parseInt(body.ticket_airport_b);
+        const man = parseInt(body.ticket_man_id);
+        const paramsArr = [
+            airA,
+            airB,
+            man,
+        ];
+        Object(__WEBPACK_IMPORTED_MODULE_0__makeQuery_js__["a" /* default */])("INSERT INTO ticket (ticket_airport_a, ticket_airport_b, ticket_date, ticket_man_id) VALUES ($1, $2, NOW(), $3) RETURNING *; ", paramsArr, (arr) => {
+            const result = arr[0];
+            response.end(JSON.stringify(result));
+        }, () => {
+            response.end(JSON.stringify({
+                result: "AIRPORT_OR_MAN_NOT_FOUND",
+            }));
+        });
+    });
+}
+
+
+/***/ }),
+/* 12 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = getManInfo;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__makeQuery__ = __webpack_require__(0);
+
+
+"use strict";
+
+function getManInfo(request, response) {
+    const id = request.params.id.toString();
+    Object(__WEBPACK_IMPORTED_MODULE_0__makeQuery__["a" /* default */])("SELECT * FROM man INNER JOIN city ON (man_city = city_id) INNER JOIN country ON (city_country_id = country_id) WHERE man_id = $1 LIMIT 1; ", [parseInt(id)], (arr) => {
+        response.end(JSON.stringify(arr));
+    }, () => {
+        response.end(JSON.stringify({
+            result: "DATABASE_ERROR",
+        }));
+    });
+}
+
+
+/***/ }),
+/* 13 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = generate;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global_js__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global_js__ = __webpack_require__(2);
 
 
 
@@ -473,19 +548,19 @@ function generate(name, mass, url) {
 }
 
 /***/ }),
-/* 12 */
+/* 14 */
 /***/ (function(module, exports) {
 
 module.exports = require("express");
 
 /***/ }),
-/* 13 */
+/* 15 */
 /***/ (function(module, exports) {
 
 module.exports = require("pg");
 
 /***/ }),
-/* 14 */
+/* 16 */
 /***/ (function(module, exports) {
 
 module.exports = require("fs");

@@ -34,6 +34,7 @@ function start() {
     generate("addCity", ['city_name', 'city_country_id'], 'api/database/city/add');
     generate("addAirport", ['airport_name', 'airport_city_id'], 'api/database/airport/add');
     generate("addMan", ['man_fullname', 'man_city'], 'api/database/man/add');
+    generate("addTicket", ['ticket_airport_a', 'ticket_airport_b', 'ticket_man_id'], 'api/database/ticket/add');
 
     route(app);
 }
@@ -43,6 +44,8 @@ start();
 function printNewLines() {
     console.log("    ");
     console.log("-----------------------------------");
+    console.log("    ");
+    console.log("System is ready to work ...");
     console.log("    ");
 }
 

@@ -6,6 +6,8 @@ import addNewCity from "./addNewCity.js";
 import addNewAirport from "./addNewAirport.js"
 import getTableContent from "./getTableContent.js";
 import addNewMan from "./addNewMan.js";
+import addNewTicket from "./addNewTicket.js";
+import getManInfo from "./getManInfo.js";
 
 export default function route(app) {
     app.get('/api/database/clear', function(request, response) {
@@ -30,5 +32,13 @@ export default function route(app) {
 
     app.post('/api/database/man/add', function(request, response) {
         addNewMan(request, response);
+    });
+
+    app.post('/api/database/ticket/add', function(request, response) {
+        addNewTicket(request, response);
+    });
+
+    app.get('/api/database/man/:id/get', function(request, response) {
+        getManInfo(request, response);
     });
 }

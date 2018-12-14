@@ -1,4 +1,5 @@
 
+DROP TABLE IF EXISTS ticket;
 DROP TABLE IF EXISTS man;
 DROP TABLE IF EXISTS airport;
 DROP TABLE IF EXISTS city;
@@ -26,4 +27,15 @@ CREATE TABLE man (
     man_fullname TEXT,
     man_city INTEGER REFERENCES city(city_id) ON DELETE CASCADE NOT NULL
 );
+
+CREATE TABLE ticket (
+    ticket_id SERIAL PRIMARY KEY,
+    ticket_airport_a INTEGER REFERENCES airport(airport_id) ON DELETE CASCADE NOT NULL,
+    ticket_airport_b INTEGER REFERENCES airport(airport_id) ON DELETE CASCADE NOT NULL,
+    ticket_date TIMESTAMPTZ,
+    ticket_man_id INTEGER REFERENCES man(man_id) ON DELETE CASCADE NOT NULL
+); 
+
+
+
 

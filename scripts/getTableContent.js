@@ -10,6 +10,8 @@ export default function getTableContent(request, response) {
     makeQuery(query, [], (arr) => {
         response.end(JSON.stringify(arr));
     }, () => {
-        throw new Error();
+        response.end(JSON.stringify({
+            result: "TABLE_NOT_FOUND",
+        }));
     });
 }
