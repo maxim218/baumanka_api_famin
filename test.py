@@ -667,6 +667,132 @@ normal = {
 equalObjects(normal, objAnswer)
 
 ##########################################################################
+
+# получение информации о существующих людях
+
+jsonAnswer = sendGet("api/database/man/3/get")
+objAnswer = parseResult(jsonAnswer)
+normal = {
+	"man_id":3,
+	"man_fullname": "Fric August",
+	"man_city":5,"city_id": 5,
+	"city_name": "Berlin",
+	"city_country_id": 2,
+	"country_id": 2,
+	"country_name": "Germany"
+}
+equalObjects(normal, objAnswer)
+
+jsonAnswer = sendGet("api/database/man/5/get")
+objAnswer = parseResult(jsonAnswer)
+normal = {
+	"man_id":5,
+	"man_fullname":"Lord Genry",
+	"man_city":1,"city_id":1,
+	"city_name":"London",
+	"city_country_id":3,
+	"country_id":3,
+	"country_name":"England"
+}
+equalObjects(normal, objAnswer)
+
+##########################################################################
+
+# попытка получить информацию о несуществующем человеке
+
+jsonAnswer = sendGet("api/database/man/17/get")
+objAnswer = parseResult(jsonAnswer)
+normal = {
+	"result":"MAN_NOT_EXISTS"
+}
+equalObjects(normal, objAnswer)
+
+##########################################################################
+
+# получить информацию о супружеских парах
+
+jsonAnswer = sendGet("api/database/pair/1/get")
+objAnswer = parseResult(jsonAnswer)
+normal = {
+	"pair_id": 1,
+	"pair_man_a": 3,
+	"pair_man_b": 4,
+	"man_1": "Fric August",
+	"man_2": "Angela Ferkel"
+}
+equalObjects(normal, objAnswer)
+
+jsonAnswer = sendGet("api/database/pair/2/get")
+objAnswer = parseResult(jsonAnswer)
+normal = {
+	"pair_id": 2,
+	"pair_man_a": 7,
+	"pair_man_b": 1,
+	"man_1": "Nina Kolotova",
+	"man_2": "Maxim Kolotovkin"
+}
+equalObjects(normal, objAnswer)
+
+jsonAnswer = sendGet("api/database/pair/3/get")
+objAnswer = parseResult(jsonAnswer)
+normal = {
+	"pair_id": 3,
+	"pair_man_a": 6,
+	"pair_man_b": 5,
+	"man_1": "Dorian Grey",
+	"man_2": "Lord Genry"
+}
+equalObjects(normal, objAnswer)
+
+##########################################################################
+
+# попытка получить информацию о несуществующей паре
+
+jsonAnswer = sendGet("api/database/pair/5/get")
+objAnswer = parseResult(jsonAnswer)
+normal = {
+	"result":"PAIR_NOT_FOUND"
+}
+equalObjects(normal, objAnswer)
+
+##########################################################################
+
+# получить информацию о городе и его стране по имени города
+
+jsonAnswer = sendGet("api/database/get_country_by_city_name?name=Moscow")
+objAnswer = parseResult(jsonAnswer)
+normal = {
+	"city_id": 3,
+	"city_name": "Moscow",
+	"city_country_id": 1,
+	"country_id": 1,
+	"country_name": "Russia"
+}
+equalObjects(normal, objAnswer)
+
+jsonAnswer = sendGet("api/database/get_country_by_city_name?name=Berlin")
+objAnswer = parseResult(jsonAnswer)
+normal = {
+	"city_id": 5,
+	"city_name": "Berlin",
+	"city_country_id": 2,
+	"country_id": 2,
+	"country_name": "Germany"
+}
+equalObjects(normal, objAnswer)
+
+##########################################################################
+
+# попытка получить информацию о несуществующем городе
+
+jsonAnswer = sendGet("api/database/get_country_by_city_name?name=Anadir")
+objAnswer = parseResult(jsonAnswer)
+normal = {
+	"result":"NOT_FOUND"
+}
+equalObjects(normal, objAnswer)
+
+##########################################################################
 ##########################################################################
 
 end = input()

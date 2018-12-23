@@ -9,6 +9,9 @@ import addNewMan from "./addNewMan.js";
 import addNewTicket from "./addNewTicket.js";
 import getManInfo from "./getManInfo.js";
 import addPair from "./addPair.js"
+import getPairInfo from "./getPairInfo.js";
+import getCountryByCityName from "./getCountryByCityName.js";
+import getAllCitiesOfCountryByName from "./getAllCitiesOfCountryByName.js";
 
 export default function route(app) {
     app.get('/api/database/clear', function(request, response) {
@@ -45,5 +48,17 @@ export default function route(app) {
 
     app.post('/api/database/pair/add', function(request, response) {
         addPair(request, response);
+    });
+
+    app.get('/api/database/pair/:id/get', function(request, response) {
+        getPairInfo(request, response);
+    });
+
+    app.get('/api/database/get_country_by_city_name', function(request, response) {
+        getCountryByCityName(request, response);
+    });
+
+    app.get('/api/database/get_all_cities_of_country_by_name', function(request, response) {
+        getAllCitiesOfCountryByName(request, response);
     });
 }

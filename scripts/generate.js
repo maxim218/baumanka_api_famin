@@ -16,6 +16,10 @@ export default function generate(name, mass, url) {
                     padding: 7px;
                     width: 300px;
                 }
+
+                body {
+                    background: #CCCCCC;
+                }
             </style>
             <meta charset="UTF-8" />
             <title>${name}</title>
