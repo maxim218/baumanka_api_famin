@@ -35,6 +35,7 @@ function start() {
     generate("addAirport", ['airport_name', 'airport_city_id'], 'api/database/airport/add');
     generate("addMan", ['man_fullname', 'man_city'], 'api/database/man/add');
     generate("addTicket", ['ticket_airport_a', 'ticket_airport_b', 'ticket_man_id'], 'api/database/ticket/add');
+    generate("addPair", ["pair_man_a", "pair_man_b"], 'api/database/pair/add');
 
     route(app);
 }

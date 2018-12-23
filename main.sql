@@ -1,4 +1,5 @@
 
+DROP TABLE IF EXISTS pair;
 DROP TABLE IF EXISTS ticket;
 DROP TABLE IF EXISTS man;
 DROP TABLE IF EXISTS airport;
@@ -35,3 +36,9 @@ CREATE TABLE ticket (
     ticket_date TIMESTAMPTZ,
     ticket_man_id INTEGER REFERENCES man(man_id) ON DELETE CASCADE NOT NULL
 ); 
+
+CREATE TABLE pair (
+    pair_id SERIAL PRIMARY KEY,
+    pair_man_a INTEGER REFERENCES man(man_id) ON DELETE CASCADE NOT NULL,
+    pair_man_b INTEGER REFERENCES man(man_id) ON DELETE CASCADE NOT NULL
+);

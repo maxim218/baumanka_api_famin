@@ -440,6 +440,18 @@ normal = {
 }
 equalObjects(normal, objAnswer)
 
+jsonAnswer = sendPost("api/database/man/add", createJSONstring({
+    "man_fullname": "Nina Kolotova",
+	"man_city": 2
+}));
+objAnswer = parseResult(jsonAnswer)
+normal = {
+	"man_id": 7,
+    "man_fullname": "Nina Kolotova",
+	"man_city": 2
+}
+equalObjects(normal, objAnswer)
+
 ##########################################################################
 
 # попытка добавить людей из несуществующих городов
@@ -577,6 +589,80 @@ jsonAnswer = sendPost("api/database/ticket/add", createJSONstring({
 objAnswer = parseResult(jsonAnswer)
 normal = {
 	"result": "AIRPORT_OR_MAN_NOT_FOUND"
+}
+equalObjects(normal, objAnswer)
+
+##########################################################################
+
+# добавление супружеских пар
+
+jsonAnswer = sendPost("api/database/pair/add", createJSONstring({
+    "pair_man_a": 3,
+	"pair_man_b": 4
+}));
+objAnswer = parseResult(jsonAnswer)
+normal = {
+	"pair_id": 1,
+	"pair_man_a": 3,
+	"pair_man_b": 4
+}
+equalObjects(normal, objAnswer)
+
+jsonAnswer = sendPost("api/database/pair/add", createJSONstring({
+    "pair_man_a": 7,
+	"pair_man_b": 1
+}));
+objAnswer = parseResult(jsonAnswer)
+normal = {
+	"pair_id": 2,
+	"pair_man_a": 7,
+	"pair_man_b": 1
+}
+equalObjects(normal, objAnswer)
+
+jsonAnswer = sendPost("api/database/pair/add", createJSONstring({
+    "pair_man_a": 6,
+	"pair_man_b": 5
+}));
+objAnswer = parseResult(jsonAnswer)
+normal = {
+	"pair_id": 3,
+	"pair_man_a": 6,
+	"pair_man_b": 5
+}
+equalObjects(normal, objAnswer)
+
+##########################################################################
+
+# попытка добавить супружеские пары из несуществующих людей
+
+jsonAnswer = sendPost("api/database/pair/add", createJSONstring({
+    "pair_man_a": 100,
+	"pair_man_b": 4
+}));
+objAnswer = parseResult(jsonAnswer)
+normal = {
+	"result": "MAN_NOT_FOUND"
+}
+equalObjects(normal, objAnswer)
+
+jsonAnswer = sendPost("api/database/pair/add", createJSONstring({
+    "pair_man_a": 4,
+	"pair_man_b": 100
+}));
+objAnswer = parseResult(jsonAnswer)
+normal = {
+	"result": "MAN_NOT_FOUND"
+}
+equalObjects(normal, objAnswer)
+
+jsonAnswer = sendPost("api/database/pair/add", createJSONstring({
+    "pair_man_a": 100,
+	"pair_man_b": 100
+}));
+objAnswer = parseResult(jsonAnswer)
+normal = {
+	"result": "MAN_NOT_FOUND"
 }
 equalObjects(normal, objAnswer)
 

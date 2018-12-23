@@ -8,6 +8,7 @@ import getTableContent from "./getTableContent.js";
 import addNewMan from "./addNewMan.js";
 import addNewTicket from "./addNewTicket.js";
 import getManInfo from "./getManInfo.js";
+import addPair from "./addPair.js"
 
 export default function route(app) {
     app.get('/api/database/clear', function(request, response) {
@@ -40,5 +41,9 @@ export default function route(app) {
 
     app.get('/api/database/man/:id/get', function(request, response) {
         getManInfo(request, response);
+    });
+
+    app.post('/api/database/pair/add', function(request, response) {
+        addPair(request, response);
     });
 }
