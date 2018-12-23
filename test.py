@@ -465,9 +465,122 @@ normal = {
 equalObjects(normal, objAnswer)
 
 ##########################################################################
+
+# бронирование билетов пользователями
+
+jsonAnswer = sendPost("api/database/ticket/add", createJSONstring({
+    "ticket_airport_a": 3,
+	"ticket_airport_b": 5,
+	"ticket_man_id": 4
+}));
+objAnswer = parseResult(jsonAnswer)
+normal = {
+	"ticket_id": 1,
+	"ticket_airport_a": 3,
+	"ticket_airport_b": 5,
+	"ticket_man_id": 4,
+	"ticket_date": objAnswer["ticket_date"]
+}
+equalObjects(normal, objAnswer)
+
+jsonAnswer = sendPost("api/database/ticket/add", createJSONstring({
+    "ticket_airport_a": 6,
+	"ticket_airport_b": 1,
+	"ticket_man_id": 5,
+}));
+objAnswer = parseResult(jsonAnswer)
+normal = {
+	"ticket_id": 2,
+	"ticket_airport_a": 6,
+	"ticket_airport_b": 1,
+	"ticket_man_id": 5,
+	"ticket_date": objAnswer["ticket_date"]
+}
+equalObjects(normal, objAnswer)
+
+jsonAnswer = sendPost("api/database/ticket/add", createJSONstring({
+    "ticket_airport_a": 6,
+	"ticket_airport_b": 4,
+	"ticket_man_id": 1,
+}));
+objAnswer = parseResult(jsonAnswer)
+normal = {
+	"ticket_id": 3,
+	"ticket_airport_a": 6,
+	"ticket_airport_b": 4,
+	"ticket_man_id": 1,
+	"ticket_date": objAnswer["ticket_date"]
+}
+equalObjects(normal, objAnswer)
+
+jsonAnswer = sendPost("api/database/ticket/add", createJSONstring({
+    "ticket_airport_a": 5,
+	"ticket_airport_b": 2,
+	"ticket_man_id": 3,
+}));
+objAnswer = parseResult(jsonAnswer)
+normal = {
+	"ticket_id": 4,
+	"ticket_airport_a": 5,
+	"ticket_airport_b": 2,
+	"ticket_man_id": 3,
+	"ticket_date": objAnswer["ticket_date"]
+}
+equalObjects(normal, objAnswer)
+
+jsonAnswer = sendPost("api/database/ticket/add", createJSONstring({
+    "ticket_airport_a": 1,
+	"ticket_airport_b": 3,
+	"ticket_man_id": 2,
+}));
+objAnswer = parseResult(jsonAnswer)
+normal = {
+	"ticket_id": 5,
+	"ticket_airport_a": 1,
+	"ticket_airport_b": 3,
+	"ticket_man_id": 2,
+	"ticket_date": objAnswer["ticket_date"]
+}
+equalObjects(normal, objAnswer)
+
+##########################################################################
+
+# попытка добавления билетов с некорректными данными
+
+jsonAnswer = sendPost("api/database/ticket/add", createJSONstring({
+    "ticket_airport_a": 100,
+	"ticket_airport_b": 2,
+	"ticket_man_id": 3,
+}));
+objAnswer = parseResult(jsonAnswer)
+normal = {
+	"result": "AIRPORT_OR_MAN_NOT_FOUND"
+}
+equalObjects(normal, objAnswer)
+
+jsonAnswer = sendPost("api/database/ticket/add", createJSONstring({
+    "ticket_airport_a": 2,
+	"ticket_airport_b": 200,
+	"ticket_man_id": 3,
+}));
+objAnswer = parseResult(jsonAnswer)
+normal = {
+	"result": "AIRPORT_OR_MAN_NOT_FOUND"
+}
+equalObjects(normal, objAnswer)
+
+jsonAnswer = sendPost("api/database/ticket/add", createJSONstring({
+    "ticket_airport_a": 3,
+	"ticket_airport_b": 2,
+	"ticket_man_id": 500,
+}));
+objAnswer = parseResult(jsonAnswer)
+normal = {
+	"result": "AIRPORT_OR_MAN_NOT_FOUND"
+}
+equalObjects(normal, objAnswer)
+
+##########################################################################
 ##########################################################################
 
 end = input()
-
-
-
