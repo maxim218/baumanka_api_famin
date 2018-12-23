@@ -366,5 +366,108 @@ equalObjects(normal, objAnswer)
 
 ##########################################################################
 
+# добавление нескольких человек
+
+jsonAnswer = sendPost("api/database/man/add", createJSONstring({
+    "man_fullname": "Maxim Kolotovkin",
+	"man_city": 3
+}));
+objAnswer = parseResult(jsonAnswer)
+normal = {
+	"man_id": 1,
+    "man_fullname": "Maxim Kolotovkin",
+	"man_city": 3
+}
+equalObjects(normal, objAnswer)
+
+jsonAnswer = sendPost("api/database/man/add", createJSONstring({
+    "man_fullname": "Petrov Petr",
+	"man_city": 3
+}));
+objAnswer = parseResult(jsonAnswer)
+normal = {
+	"man_id": 2,
+    "man_fullname": "Petrov Petr",
+	"man_city": 3
+}
+equalObjects(normal, objAnswer)
+
+jsonAnswer = sendPost("api/database/man/add", createJSONstring({
+    "man_fullname": "Fric August",
+	"man_city": 5
+}));
+objAnswer = parseResult(jsonAnswer)
+normal = {
+	"man_id": 3,
+    "man_fullname": "Fric August",
+	"man_city": 5
+}
+equalObjects(normal, objAnswer)
+
+jsonAnswer = sendPost("api/database/man/add", createJSONstring({
+    "man_fullname": "Angela Ferkel",
+	"man_city": 5
+}));
+objAnswer = parseResult(jsonAnswer)
+normal = {
+	"man_id": 4,
+    "man_fullname": "Angela Ferkel",
+	"man_city": 5
+}
+equalObjects(normal, objAnswer)
+
+jsonAnswer = sendPost("api/database/man/add", createJSONstring({
+    "man_fullname": "Lord Genry",
+	"man_city": 1
+}));
+objAnswer = parseResult(jsonAnswer)
+normal = {
+	"man_id": 5,
+    "man_fullname": "Lord Genry",
+	"man_city": 1
+}
+equalObjects(normal, objAnswer)
+
+jsonAnswer = sendPost("api/database/man/add", createJSONstring({
+    "man_fullname": "Dorian Grey",
+	"man_city": 2
+}));
+objAnswer = parseResult(jsonAnswer)
+normal = {
+	"man_id": 6,
+    "man_fullname": "Dorian Grey",
+	"man_city": 2
+}
+equalObjects(normal, objAnswer)
+
+##########################################################################
+
+# попытка добавить людей из несуществующих городов
+
+jsonAnswer = sendPost("api/database/man/add", createJSONstring({
+    "man_fullname": "Jimmy Jobs",
+	"man_city": 25
+}));
+objAnswer = parseResult(jsonAnswer)
+normal = {
+	"result": "CITY_NOT_FOUND"
+}
+equalObjects(normal, objAnswer)
+
+jsonAnswer = sendPost("api/database/man/add", createJSONstring({
+    "man_fullname": "Kollen Farel",
+	"man_city": -5
+}));
+objAnswer = parseResult(jsonAnswer)
+normal = {
+	"result": "CITY_NOT_FOUND"
+}
+equalObjects(normal, objAnswer)
+
+##########################################################################
+##########################################################################
+
+end = input()
+
 
 
