@@ -926,6 +926,12 @@ equalArrays(normal, arrayAns)
 ##########################################################################
 ##########################################################################
 
+nl()
+print("All tests OK")
+nl()
+print("Press ENTER")
+nl()
+
 try:
 	end = input()
 except Exception:
