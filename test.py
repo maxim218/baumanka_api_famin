@@ -860,46 +860,74 @@ equalArrays(normal, arrayAns)
 
 ##########################################################################
 
-# получить количество городов в странах (в стране должен быть хотя бы 1 город)
+# добавим еще два города в страну
 
-jsonAnswer = sendGet("api/database/read/from/view/v1/all")
+jsonAnswer = sendPost("api/database/city/add", createJSONstring({
+	"city_name": "Samara",
+    "city_country_id": 1
+}));
+nl();
+
+jsonAnswer = sendPost("api/database/city/add", createJSONstring({
+	"city_name": "Omsk",
+    "city_country_id": 1
+}));
+nl();
+
+##########################################################################
+
+# получить информацию о количестве городов в странах
+
+jsonAnswer = sendGet("api/database/read/from/view/v2/all")
 arrayAns = parseResult(jsonAnswer)
 normal = [
-	{"city_country_id":3, "count":"2", "country_name":"England"},
-	{"city_country_id":2, "count":"2", "country_name":"Germany"},
-	{"city_country_id":1, "count":"2", "country_name":"Russia"}
+	{"country_id":3,"country_name":"England","num":"2"},
+	{"country_id":2,"country_name":"Germany","num":"2"},
+	{"country_id":1,"country_name":"Russia","num":"4"}
 ]
 equalArrays(normal, arrayAns)
 
 ##########################################################################
 
-# добавляем ещё двух пользователей в страну
+# добавим в город аэропорт
 
-jsonAnswer = sendPost("api/database/man/add", createJSONstring({
-    "man_fullname": "Olegov Oleg",
-	"man_city": 3
+jsonAnswer = sendPost("api/database/airport/add", createJSONstring({
+    "airport_name": "AirLondon Third",
+	"airport_city_id": 1
 }));
-objAnswer = parseResult(jsonAnswer)
-normal = {
-	"man_id": 10,
-    "man_fullname": "Olegov Oleg",
-	"man_city": 3
-}
-equalObjects(normal, objAnswer)
 
-jsonAnswer = sendPost("api/database/man/add", createJSONstring({
-    "man_fullname": "Dmitriev Dmitriy",
-	"man_city": 3
-}));
-objAnswer = parseResult(jsonAnswer)
-normal = {
-	"man_id": 11,
-    "man_fullname": "Dmitriev Dmitriy",
-	"man_city": 3
-}
-equalObjects(normal, objAnswer)
+##########################################################################
+
+# получить информацию о количестве аэропортов в городах
+
+jsonAnswer = sendGet("api/database/read/from/view/v4/all")
+arrayAns = parseResult(jsonAnswer)
+normal = [
+	{"city_id":5,"city_name":"Berlin","num":"2"},
+	{"city_id":3,"city_name":"Moscow","num":"2"},
+	{"city_id":1,"city_name":"London","num":"3"}
+]
+equalArrays(normal, arrayAns)
+
+##########################################################################
+
+# получить информацию о количестве людей в городах
+
+jsonAnswer = sendGet("api/database/read/from/view/v6/all")
+arrayAns = parseResult(jsonAnswer)
+normal = [
+	{"city_id":5,"city_name":"Berlin","num":"2"},
+	{"city_id":3,"city_name":"Moscow","num":"2"},
+	{"city_id":2,"city_name":"Liverpool","num":"2"},
+	{"city_id":1,"city_name":"London","num":"1"}
+]
+equalArrays(normal, arrayAns)
 
 ##########################################################################
 ##########################################################################
 
-end = input()
+try:
+	end = input()
+except Exception:
+	pass
+

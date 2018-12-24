@@ -1,3 +1,8 @@
+DROP VIEW IF EXISTS v6;
+DROP VIEW IF EXISTS v5;
+DROP VIEW IF EXISTS v4;
+DROP VIEW IF EXISTS v3;
+DROP VIEW IF EXISTS v2;
 DROP VIEW IF EXISTS v1;
 
 /* ************************************************************ */
@@ -50,7 +55,25 @@ CREATE TABLE pair (
 
 /* ************************************************************ */
 
-CREATE VIEW v1 AS SELECT city_country_id, country_name FROM city 
-INNER JOIN country ON (city_country_id = country_id) GROUP BY country_name, city_country_id
-ORDER BY city_country_id DESC;
+CREATE VIEW v1 AS 
+SELECT city_country_id, COUNT(city) AS num FROM city GROUP BY city_country_id;
+
+CREATE VIEW v2 AS
+SELECT country_id, country_name, num FROM v1 INNER JOIN country ON (country_id = city_country_id)
+ORDER BY country_id DESC;
+
+CREATE VIEW v3 AS
+SELECT airport_city_id, COUNT(airport) AS num FROM airport GROUP BY airport_city_id;
+
+CREATE VIEW v4 AS
+SELECT city_id, city_name, num FROM v3 INNER JOIN city ON (city_id = airport_city_id)
+ORDER BY city_id DESC;
+
+CREATE VIEW v5 AS
+SELECT man_city, COUNT(man) AS num FROM man GROUP BY man_city;
+
+CREATE VIEW v6 AS
+SELECT city_id, city_name, num FROM v5 INNER JOIN city ON (city_id = man_city)
+ORDER BY city_id DESC;
+
 
