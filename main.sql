@@ -1,3 +1,6 @@
+DROP VIEW IF EXISTS v1;
+
+/* ************************************************************ */
 
 DROP TABLE IF EXISTS pair;
 DROP TABLE IF EXISTS ticket;
@@ -5,6 +8,8 @@ DROP TABLE IF EXISTS man;
 DROP TABLE IF EXISTS airport;
 DROP TABLE IF EXISTS city;
 DROP TABLE IF EXISTS country;
+
+/* ************************************************************ */
 
 CREATE TABLE country (
     country_id SERIAL PRIMARY KEY,
@@ -42,3 +47,10 @@ CREATE TABLE pair (
     pair_man_a INTEGER REFERENCES man(man_id) ON DELETE CASCADE NOT NULL,
     pair_man_b INTEGER REFERENCES man(man_id) ON DELETE CASCADE NOT NULL
 );
+
+/* ************************************************************ */
+
+CREATE VIEW v1 AS SELECT city_country_id, country_name FROM city 
+INNER JOIN country ON (city_country_id = country_id) GROUP BY country_name, city_country_id
+ORDER BY city_country_id DESC;
+

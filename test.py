@@ -793,6 +793,113 @@ normal = {
 equalObjects(normal, objAnswer)
 
 ##########################################################################
+
+# получить все города определённой страны
+
+jsonAnswer = sendGet("api/database/get_all_cities_of_country_by_name?name=Germany")
+arrayAns = parseResult(jsonAnswer)
+normal = [
+	{"city_id":6,"city_name":"Bonn"},
+	{"city_id":5,"city_name":"Berlin"}
+]
+equalArrays(normal, arrayAns)
+
+jsonAnswer = sendGet("api/database/get_all_cities_of_country_by_name?name=Russia")
+arrayAns = parseResult(jsonAnswer)
+normal = [
+	{"city_id":4,"city_name":"Murmansk"},
+	{"city_id":3,"city_name":"Moscow"}
+]
+equalArrays(normal, arrayAns)
+
+##########################################################################
+
+# попытка получить города несуществующей страны
+
+jsonAnswer = sendGet("api/database/get_all_cities_of_country_by_name?name=Meksika")
+arrayAns = parseResult(jsonAnswer)
+normal = []
+equalArrays(normal, arrayAns)
+
+##########################################################################
+
+# получение информации о билетах
+
+jsonAnswer = sendGet("api/database/tickets/all/info/select")
+arrayAns = parseResult(jsonAnswer)
+normal = [
+	{
+		"ticket_id": 5,
+		"man_fullname": "Petrov Petr",
+		"air_1": "AirportBerlin First",
+		"air_2": "AirLondon First"
+	},{
+		"ticket_id": 4,
+		"man_fullname": "Fric August",
+		"air_1": "MoscowAirport First",
+		"air_2": "AirportBerlin Second"
+	},{
+		"ticket_id": 3,
+		"man_fullname": "Maxim Kolotovkin",
+		"air_1": "MoscowAirport Second",
+		"air_2": "AirLondon Second"
+	},{
+		"ticket_id": 2,
+		"man_fullname": "Lord Genry",
+		"air_1": "MoscowAirport Second",
+		"air_2": "AirportBerlin First"
+	},
+	{
+		"ticket_id": 1,
+		"man_fullname": "Angela Ferkel",
+		"air_1": "AirLondon First",
+		"air_2": "MoscowAirport First"
+	}
+]
+equalArrays(normal, arrayAns)
+
+##########################################################################
+
+# получить количество городов в странах (в стране должен быть хотя бы 1 город)
+
+jsonAnswer = sendGet("api/database/read/from/view/v1/all")
+arrayAns = parseResult(jsonAnswer)
+normal = [
+	{"city_country_id":3, "count":"2", "country_name":"England"},
+	{"city_country_id":2, "count":"2", "country_name":"Germany"},
+	{"city_country_id":1, "count":"2", "country_name":"Russia"}
+]
+equalArrays(normal, arrayAns)
+
+##########################################################################
+
+# добавляем ещё двух пользователей в страну
+
+jsonAnswer = sendPost("api/database/man/add", createJSONstring({
+    "man_fullname": "Olegov Oleg",
+	"man_city": 3
+}));
+objAnswer = parseResult(jsonAnswer)
+normal = {
+	"man_id": 10,
+    "man_fullname": "Olegov Oleg",
+	"man_city": 3
+}
+equalObjects(normal, objAnswer)
+
+jsonAnswer = sendPost("api/database/man/add", createJSONstring({
+    "man_fullname": "Dmitriev Dmitriy",
+	"man_city": 3
+}));
+objAnswer = parseResult(jsonAnswer)
+normal = {
+	"man_id": 11,
+    "man_fullname": "Dmitriev Dmitriy",
+	"man_city": 3
+}
+equalObjects(normal, objAnswer)
+
+##########################################################################
 ##########################################################################
 
 end = input()

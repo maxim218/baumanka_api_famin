@@ -12,6 +12,8 @@ import addPair from "./addPair.js"
 import getPairInfo from "./getPairInfo.js";
 import getCountryByCityName from "./getCountryByCityName.js";
 import getAllCitiesOfCountryByName from "./getAllCitiesOfCountryByName.js";
+import getFullTicketsInfo from "./getFullTicketsInfo.js";
+import readAllFromView from "./readAllFromView.js";
 
 export default function route(app) {
     app.get('/api/database/clear', function(request, response) {
@@ -60,5 +62,13 @@ export default function route(app) {
 
     app.get('/api/database/get_all_cities_of_country_by_name', function(request, response) {
         getAllCitiesOfCountryByName(request, response);
+    });
+
+    app.get('/api/database/tickets/all/info/select', function(request, response) {
+        getFullTicketsInfo(request, response);
+    });
+
+    app.get('/api/database/read/from/view/:v/all', function(request, response) {
+        readAllFromView(request, response);
     });
 }
