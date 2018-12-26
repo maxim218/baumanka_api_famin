@@ -23,7 +23,7 @@ python test.py
 Заполнение базы данных большим объёмом данных
 
 ```
-addRecords.py
+python addRecords.py
 ```
 
 Запуск утилиты AB
